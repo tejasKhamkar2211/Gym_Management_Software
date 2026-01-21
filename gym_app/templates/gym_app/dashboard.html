@@ -1,0 +1,122 @@
+{% extends 'gym_app/base.html' %}
+
+{% block content %}
+
+<style>
+    /* Full-page background with subtle animation */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        background: url("https://img.freepik.com/premium-photo/gym-equipment-barbell-fitness-studio-ai_894067-8944.jpg") no-repeat center center fixed;
+        background-size: cover;
+        animation: bgAnimation 30s linear infinite;
+    }
+
+    @keyframes bgAnimation {
+        0% { background-position: center top; }
+        50% { background-position: center bottom; }
+        100% { background-position: center top; }
+    }
+
+    /* Overlay for hero section */
+    .overlay {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 50px 20px;
+        border-radius: 15px;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .dashboard-hero {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    /* Info Cards Styling */
+    .info-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 15px;
+        overflow: hidden;
+        animation: slideUp 1s ease forwards;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        backdrop-filter: blur(8px);
+    }
+
+    .info-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    }
+
+    .info-card img {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<!-- HERO SECTION -->
+<div class="dashboard-hero overlay">
+    <h1 class="display-5 fw-bold">Welcome to the Gym Dashboard</h1>
+    <p class="lead mt-3">
+        Fitness is not about being better than someone else, it’s about being better than yesterday.
+    </p>
+</div>
+
+<!-- INFO CARDS -->
+<div class="container">
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card info-card">
+                <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1">
+                <div class="card-body text-center">
+                    <h5>Health & Strength</h5>
+                    <p>Improve stamina, immunity, and overall well-being.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card info-card">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b">
+                <div class="card-body text-center">
+                    <h5>Workout Plans</h5>
+                    <p>Customized plans for muscle, weight loss, and endurance.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card info-card">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a">
+                <div class="card-body text-center">
+                    <h5>Active Lifestyle</h5>
+                    <p>Consistency builds confidence and long-term fitness.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card info-card">
+                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f">
+                <div class="card-body text-center">
+                    <h5>Easy Management</h5>
+                    <p>Manage members, plans, trainers, and payments easily.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

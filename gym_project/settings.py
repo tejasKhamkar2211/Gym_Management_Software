@@ -3,8 +3,9 @@ Django settings for gym_project project.
 """
 
 from pathlib import Path
+import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -23,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'gym_app',   # gym app
+    'gym_app',
 ]
 
 
@@ -63,17 +64,32 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gym_project.wsgi.application'
 
 
-# DATABASE (MySQL)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'final_gym_db',
-        'USER': 'root',
-        'PASSWORD': 'Ydl@123',
-        'HOST': 'localhost',
-        'PORT': '3306',
+# ==========================
+# DATABASE CONFIGURATION
+# ==========================
+
+ENV = os.environ.get("ENV")
+
+if ENV == "ci":
+    # ✅ Jenkins / CI uses SQLite
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    # ✅ Local / Production uses MySQL
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'final_gym_db',
+            'USER': 'root',
+            'PASSWORD': 'Ydl@123',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
+    }
 
 
 # PASSWORD VALIDATION
@@ -96,7 +112,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 
-# ✅ FIX FOR AUTO FIELD WARNING
+# DEFAULT PRIMARY KEY FIELD
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
